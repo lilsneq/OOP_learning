@@ -1,0 +1,24 @@
+# Виртуальное окружение
+venv/
+.env/
+.venv/
+
+# Кэш Python
+__pycache__/
+*.pyc
+
+# Файлы IDE (PyCharm)
+.idea/
+
+# Базы данных (если используешь SQLite)
+*.sqlite3
+*.db
+
+# Файлы с секретами/логами
+.env
+*.log
+
+# Результаты сборки
+dist/
+build/
+*.egg-info/
