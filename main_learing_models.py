@@ -1,5 +1,10 @@
+#импорты
+
+
+
+
 #начало учебного проекта по ООП
-from os import pread
+
 
 
 #2.1 Классы, объекты, экземпляры классов
@@ -287,25 +292,306 @@ from os import pread
 
                                                     #
 
-class Car:
-    model = 'BMW'
-    engine = 1.6
+# class Car:
+#     model = 'BMW'
+#     engine = 1.6
+#
+#     @staticmethod
+#     def drive():
+#         print("drive")
+#
+#     @staticmethod
+#     def wheel():
+#         return 'wheel'
+#
+#
+# Car.drive()
+#
+# b = Car()
+# b.drive()
+# b.wheel()
+# print(f'b.wheel - {b.wheel()}')
 
-    @staticmethod
-    def drive():
-        print("drive")
 
-    @staticmethod
-    def wheel():
-        return 'wheel'
+                                                    #3.1 Методы экземпляра. Параметр self
+
+# class Cat:
+#     breed = 'pers'
+#     def hello(*args):
+#         print("Hello, world from Cat!", *args)
+#\
+#     def show_bread(self):
+#         print(f'my breed is {self.breed}')
+#
+#     def show_name(self):
+#         if hasattr(self, 'name'):
+#             print(f'my name is {self.name}')
+#         else:
+#             print(f'nothing')
+#
+#     def set_value(self, value, age=0):
+#         self.name = value
+#         self.age = age
+#
+#     def show_age(self):
+#         print(f'{self.name} is {self.age} years old')
+#
+# # Cat().hello()
+# bob = Cat()
+# jim = Cat()
+#
+# bob.hello()
+# jim.hello()
+#
+# walt = Cat()
+#
+#
+# bob.show_bread()
+# bob.set_value('BOB', age=40)
+# bob.show_age()
+#
+# mary = Cat()
+# mary.name = 'MARY'
+# mary.show_name()
+#
+# tom = Cat()
+# tom.set_value('TOM')
+# tom.show_name()
+#
+# jerry = Cat()
+# jerry.set_value('JERRY', age=12)
+# jerry.show_name()
+# jerry.show_age()
 
 
-Car.drive()
+# class Student:
+#     def set_data(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def show(self):
+#         print(self.name, self.age)
+#
+# student_1 = Student()
+# student_2 = Student()
+#
+# student_1.set_data("Kelly", 15)
+# student_2.set_data("Rita", 19)
+#
+# student_1.show()
+# Student.show(student_2)
 
-b = Car()
-b.drive()
-b.wheel()
-print(f'b.wheel - {b.wheel()}')
+                                                    #
+
+# class Lion:
+#     def roar(self):
+#         print("Rrrrrrr!!!")
+#
+#
+# s = Lion()
+# s.roar()
+
+                                                    #
+
+# class Robot():
+#     def say_hello(self):
+#         print('Hello, human! My name is C-3PO')
+#
+#     def say_bye(self):
+#         print('See u later alligator')
+#
+#
+# c3po = Robot()
+# r2d2 = Robot()
+#
+# c3po.say_hello()
+# c3po.say_bye()
+#
+# r2d2.say_hello()
+# r2d2.say_bye()
+
+                                                    #
+
+# class Robot:
+#     def set_name(self, name):
+#         self.name = name
+#
+#     def say_hello(self):
+#         if hasattr(self, 'name'):
+#             print(f'Hello, human! My name is {self.name}')
+#         else:
+#             print(f'У робота нет имени')
+#
+#     def say_bye(self):
+#         print(f'See u later alligator')
+#
+#
+# c3po = Robot()
+# c3po.say_hello()
+# c3po.set_name('R2D2')
+# c3po.say_hello()
+# c3po.say_bye()
+
+
+# class Name:
+#     def set_name(self, name):
+#         self.name = name
+#
+#     def say_hello(self):
+#         if hasattr(self, 'name'):
+#             print(f'Hello {self.name}')
+#         else:
+#             print(f'Такого имени нет')
+#
+#     def say_goodbye(self):
+#         print(f'Goodbye {self.name}')
+#
+#
+# Sergey = Name()
+# Sergey.set_name('Sergey')
+# Sergey.say_hello()
+# Sergey.say_goodbye()
+
+                                                    #
+
+# class Counter:
+#     def start_from(self, counter=0):
+#         self.counter = counter
+#
+#     def increment(self):
+#         self.counter += 1
+#
+#     def display(self):
+#         print(f'Текущее значение счетчика = {self.counter}')
+#
+#     def reset(self):
+#         self.counter = 0
+#
+#
+# c1 = Counter()
+# c2 = Counter()
+# c1.start_from(10)
+# c2.start_from(20)
+# c1.increment()
+# c2.increment()
+# c1.display()
+# c2.display()
+# c1.reset()
+# c1.display()
+# c2.display()
+
+                                                    #
+
+# class Constructor:
+#     def add_atribute(self, key, value):
+#         setattr(self, key, value)
+#
+#     def display(self):
+#         return print(self.__dict__)
+#
+#
+# obj2 = Constructor()
+# obj3 = Constructor()
+#
+# obj2.display()
+# obj3.display()
+#
+# obj2.add_atribute('height', 100)
+#
+# obj3.add_atribute('a', 100)
+# obj3.add_atribute('b', 300)
+# obj3.add_atribute('c', 200)
+# obj3.add_atribute('b', 1)
+#
+# obj2.display()
+# obj3.display()
+
+                                                    #
+
+# class Point:
+#     def set_coordinates(self, x , y):
+#         self.x = x
+#         self.y = y
+#
+#     def get_distance_to_origin(self):
+#         if hasattr(self, 'y') and hasattr(self, 'x'):
+#             return (self.x**2 + self.y**2) ** 0.5
+#
+#     def display(self):
+#         if hasattr(self, 'y') and hasattr(self, 'x'):
+#             print(f"Point({self.x}, {self.y})")
+#         else:
+#             print('Координаты не заданы')
+#
+#
+# p3 = Point()
+# p3.display()
+# print(p3.get_distance_to_origin())
+# p3.x = 4
+# p3.display()
+# print(p3.get_distance_to_origin())
+# p3.y = 3
+# p3.display()
+# print(p3.get_distance_to_origin())
+
+                                                    #
+
+# class Point:
+#     def set_coordinates(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def get_distance_to_origin(self):
+#         if hasattr(self, 'x') and hasattr(self, 'y'):
+#             return (self.x ** 2 + self.y ** 2) ** 0.5
+#         return None
+#
+#     def display(self):
+#         if hasattr(self, 'x') and hasattr(self, 'y'):
+#             print(f"Point({self.x}, {self.y})")
+#         else:
+#             print('Координаты не заданы')
+#
+#     def get_distance(self, other):
+#         if not isinstance(other, Point):
+#             print("Передана не точка")
+#             return None
+#         if hasattr(self, 'x') and hasattr(self, 'y') and hasattr(other, 'x') and hasattr(other, 'y'):
+#             return (((self.x - other.x)**2) + ((self.y - other.y) ** 2)) ** 0.5
+#
+#         else:
+#             print('Координаты не заданы')
+#
+#
+#
+# p1 = Point()
+# p2 = Point()
+# print(p1.get_distance(p2))
+# p1.set_coordinates(1, 2)
+# print(p1.get_distance(p2))
+# p2.set_coordinates(4, 6)
+# print(p1.get_distance(p2))
+
+
+                                                    #3.2 Инициализация экземпляра. Метод __init__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
