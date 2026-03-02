@@ -1,5 +1,5 @@
 #импорты
-
+from tkinter.font import names
 
 
 #начало учебного проекта по ООП
@@ -1245,52 +1245,7 @@
 #             Task.display(task)
 #
 #
-# # Создаем список задач
-# todo = TaskList()
-# assert todo.tasks == []
-#
-# # Создаем несколько задач и добавляем их в список
-# task1 = Task("Стирка", "Постирать трусы, носки, слюнявчики")
-# assert task1.name == 'Стирка'
-# assert task1.description == 'Постирать трусы, носки, слюнявчики'
-# assert task1.status is False
-# task1.display()
-#
-# todo.add_task(task1)
-# assert len(todo.tasks) == 1
-#
-# task2 = Task("Продукты", "Купить лук чеснок огурцы хлеб и биток")
-# assert task2.name == 'Продукты'
-# assert task2.description == 'Купить лук чеснок огурцы хлеб и биток'
-# assert task2.status is False
-#
-# todo.add_task(task2)
-# assert len(todo.tasks) == 2
-#
-# # Создаем менеджер задач и показываем список задач
-# manager = TaskManager(todo)
-# assert isinstance(manager.task_list, TaskList)
-# print('-----Список дел-----')
-# manager.show_tasks()
-#
-# # Отмечаем первую задачу выполненной и показываем список задач
-# manager.mark_done(task1)
-#
-# # Проверяем изменился ли статус 2мя способами
-# assert task1.status is True
-# assert manager.task_list.tasks[0].status is True
-#
-# print('-----Список дел-----')
-# manager.show_tasks()
-#
-# # Удаляем вторую задачу и показываем список задач
-# todo.remove_task(task2)
-#
-# assert len(todo.tasks) == 1
-# assert len(manager.task_list.tasks) == 1
-#
-# print('-----Список дел-----')
-# manager.show_tasks()
+
 
 
                                                     #
@@ -1321,67 +1276,355 @@
 
                                                     #
 
-class Point:
-    dictory = list()
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        Point.dictory.append(self)
-
-    def get_distance_to_origin(self):
-        return (self.x ** 2 + self.y ** 2) ** 0.5
-
-    def get_point_with_max_distance(self):
-        # lists = sorted(Point.dictory.keys() ,key=lambda p: p.get_distance_to_origin())                    #вывод наибольшего из всех
-        # lists[-1].display()
-
-        result = max(Point.dictory, key=lambda x: (x.get_distance_to_origin(), x.y))
-
-        result.display()
-
-
-
-    def get_distance(self, another_point):
-        if not isinstance(another_point, Point):
-            print('Передана не точка')
-            return None
-        return ((self.x - another_point.x) ** 2
-                + (self.y - another_point.y) ** 2) ** 0.5
-
-    def display(self):
-        print(f"Point({self.x}, {self.y})")
-
-
+# class Point:
+#     dictory = list()
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.dictory.append(self)
+#
+#     def get_distance_to_origin(self):
+#         return (self.x ** 2 + self.y ** 2) ** 0.5
+#
+#     def get_point_with_max_distance(self):
+#         # lists = sorted(Point.dictory.keys() ,key=lambda p: p.get_distance_to_origin())                    #вывод наибольшего из всех
+#         # lists[-1].display()
+#
+#         result = max(Point.dictory, key=lambda x: (x.get_distance_to_origin(), x.y))
+#
+#         result.display()
+#
+#
+#
+#     def get_distance(self, another_point):
+#         if not isinstance(another_point, Point):
+#             print('Передана не точка')
+#             return None
+#         return ((self.x - another_point.x) ** 2
+#                 + (self.y - another_point.y) ** 2) ** 0.5
+#
+#     def display(self):
+#         print(f"Point({self.x}, {self.y})")
 
 
-
-
-p1 = Point(6, 8)
-p2 = Point(8, 6)
-p2.get_point_with_max_distance()
+# p1 = Point(6, 8)
+# p2 = Point(8, 6)
+# p2.get_point_with_max_distance()
 
 # Point.get_point_with_max_distance(p1)
 
+                                                    #3.4 Моносостояние для экземпляров класса
+
+# class Cat:
+#     __shared_attr = {
+#         'breed': 'pers',
+#         'color': 'black'
+#     }
+#
+#     def __init__(self):
+#         self.__dict__ = Cat.__shared_attr
+#
+#
+# a = Cat()
+# g = Cat()
+#
+#
+# g.breed = 'SIAM'
+# g.name = 'FRANKLIN'
+#
+#
+# print(a.__dict__)
+# print(g.__dict__)
+
+                                                    #
+
+# class MyClass:
+#     __my_attrs = {}
+#
+#     def __init__(self, a, b):
+#         self.a = a
+#         self.b = b
+#         self.__dict__ = MyClass._my_attrs
+#
+#
+# m = MyClass(10, True)
+# r = MyClass(50, False)
+# print(MyClass.__dict__)
+# print(r.__dict__)
+
+                                                    #
+
+#  напишите определение класса WeatherStation
+# class WeatherStation:
+#     __weather_sensor = {
+#         'temperature': 0,
+#         'humidity': 0,
+#         'pressure': 0
+#         }
+#
+#     def __init__(self):
+#         self.__dict__ = WeatherStation.__weather_sensor
+#
+#     def update_data(self, temperature, humidity, pressure):
+#         self.temperature = temperature
+#         self.humidity = humidity
+#         self.pressure = pressure
+#
+#     def get_current_data(self):
+#         return tuple(WeatherStation.__weather_sensor.values())
+#
+#
+# # код для проверки
+# sensor1 = WeatherStation()
+# assert sensor1.temperature == 0
+# assert sensor1.humidity == 0
+# assert sensor1.pressure == 0
+# sensor2 = WeatherStation()
+# assert sensor2.get_current_data() == (0, 0, 0)
+# sensor1.update_data(25, 60, 103)
+# assert sensor1.get_current_data() == (25, 60, 103)
+# assert sensor2.get_current_data() == (25, 60, 103)
+# sensor3 = WeatherStation()
+# assert sensor3.get_current_data() == (25, 60, 103)
+# sensor3.update_data(50, 20, 10)
+# assert sensor1.get_current_data() == (50, 20, 10)
+# assert sensor2.get_current_data() == (50, 20, 10)
+# print('Good')
+
+                                                    #
+
+# class Settings:
+#     _shared_state = {}
+#
+#     def __init__(self, **kwargs):
+#         self.__dict__ = self._shared_state
+#         self.__dict__.update(kwargs)
+#
+#
+# s1 = Settings(ver=1)
+# s2 = Settings()
+#
+# s1.__dict__ = {'status': 'broken'}
+#
+# print(s2.__dict__)
+# print(s1.__dict__)
+                                                    #3.5 Публичные, приватные, защищенные атрибуты и методы
+
+# class Phone:
+#     def __init__(self):
+#         self._serial_number = "123-ABC"
+#
+#
+# s1 = Phone()
+# print(s1._serial_number)
+
+                                                    #
+
+# class Card:
+#     def __init__(self):
+#         self.__pin = 1234
+#         self._pin2 = "0000"
+#
+#
+# s1 = Card()
+# print(dir(s1))
+# print(s1._pin2)
+# print(s1._Card__pin)
+
+                                                    #
+
+# class Bank:
+#     def __calculate_commision(self, amount):
+#         return amount * 0.05
+#
+#     def send_money(self, amount):
+#         return print(f'Коммичия составила: {self.__calculate_commision(amount)}')
+#
+#
+# s1 = Bank()
+# s1.send_money(100)
+
+                                                    #
+# public, private, guard
+# class BankAccount:
+#     def __init__(self, name, balance, passport):
+#         self.__name = name
+#         self.__balance = balance
+#         self.__passport = passport
+#
+#     #вызов приватного метода
+#     def print_data(self):
+#         self.__print_private_data()
+#
+#     #защищённый метод
+#     def print_guard_data(self):
+#         print(self._name, self._balance, self._passport)
+#
+#     #приватный метод
+#     def __print_private_data(self):
+#      print(self.__name, self.__balance, self.__passport)
+#
+#
+# account1 = BankAccount("Bank Account 1", 1000, 3423423423)
+
+# account1.print_data()
+# account1.print_guard_data()
+# account1.print_private_data()
+# account1.print_data()
+# print(dir(account1))
+#вызов приватного метода
+# account1._BankAccount__print_private_data()
+
+# print(account1._name)
+# print(account1._balance)
+# print(account1._passport)
+
+                                                        #
+
+# class Student:
+#     def __init__(self, name, age, branch):
+#         self.__name = name
+#         self.__age = age
+#         self.__branch = branch
+#
+#     def __display_details(self):
+#         print(f'Имя: {self.__name}')
+#         print(f'Возраст: {self.__age}')
+#         print(f'Направление: {self.__branch}')
+#
+#     def access_private_method(self):
+#         self.__display_details()
+#
+#
+# adam = Student("Adam Smith", 25, "Information Technology")
+# adam.access_private_method()
+
+                                        #
+
+# class BankDeposit:
+#     def __init__(self, name, balance, rate):
+#         self.name = name
+#         self.balance = balance
+#         self.rate = rate
+#
+#     def __calculate_profit(self):
+#         return  self.balance * (self.rate / 100)
+#
+#     def get_balance_with_profit(self):
+#         return self.balance + (self.balance  * self.rate/ 100)
+#
+#
+# account_2 = BankDeposit("Sarah Connor", 200, 27)
+# print(account_2.name)
+# print(account_2.balance)
+# print(account_2.rate)
+# print(account_2._BankDeposit__calculate_profit())
+# print(account_2.get_balance_with_profit())
+
+                                                #
+
+# class Library:
+#
+#     def __init__(self, books):
+#         self.__books = list(books)
+#
+#     def __check_availability(self, name):
+#         """принимает название книги и возращает bool"""
+#
+#         if name in self.__books:
+#             return True
+#         return False
+#
+#     def search_book(self, name):
+#         """ищет книгу в self.set_books при помощи __check_availability"""
+#
+#         if self.__check_availability(name):
+#             return True
+#         return False
+#
+#     def return_book(self, name):
+#         """принимает название книги которую нужно вернуть в библиотеку"""
+#         self.__books.append(name)
+#
+#     def _checkout_book(self, name):
+#         """принимает название книги если книга в наличие
+#         уберает из списка и возврщает True"""
+#
+#         if self.search_book(name):
+#             self.__books.remove(name)
+#             return True
+#         return False
+#
+#
+#
+# # Напишите определение класса Library
+#
+#
+# # Ниже код для проверки методов класса Library
+# library = Library(["War and Peace", "Moby-Dick", "Pride and Prejudice"])
+#
+# assert library._Library__books == ["War and Peace", "Moby-Dick", "Pride and Prejudice"]
+# assert library.search_book("Moby-Dick") == True
+# assert library.search_book("Jane Air") == False
+#
+# assert library._Library__check_availability("War and Peace") == True
+# assert library._checkout_book("Moby-Dick") == True
+# assert library._Library__books == ["War and Peace", "Pride and Prejudice"]
+#
+# assert library.search_book("Moby-Dick") == False
+# assert library.return_book("Moby-Dick") is None
+# assert library._Library__books == ["War and Peace", "Pride and Prejudice", "Moby-Dick"]
+# assert library.search_book("Moby-Dick") == True
+# print('Good')
 
 
+                                                #
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# class Employee:
+#     def __init__(self, name: str, position: str, hours_worked: int, hourly_rate: int) -> None:
+#         self.name = name
+#         self.__position = position
+#         self.__hours_worked = hours_worked
+#         self.__hourly_rate = hourly_rate
+#
+#     def __calculate_salary(self) -> int:
+#         """считает зарплату сотрудника, умножая отработанные часы на часовую оплату"""
+#         return self.__hours_worked * self.__hourly_rate
+#
+#     def _set_position(self, position) -> None:
+#         """принимает название должности и изменяет пользователю значение атрибута __position"""
+#         self.__position = position
+#
+#     def get_position(self) -> str:
+#         """возвращает атрибут __position"""
+#         return self.__position
+#
+#     def get_salary(self) -> int:
+#         """возвращает результат вызова приватного метода calculate_salary"""
+#         return self.__calculate_salary()
+#
+#     def get_employee_details(self) -> str:
+#         return f'Name: {self.name}, Position: {self.__position}, Salary: {self.__calculate_salary()}'
+#
+#
+# employee = Employee("Джеки Чан", 'manager', 20, 40)
+# assert employee.name == 'Джеки Чан'
+# assert employee._Employee__hours_worked == 20
+# assert employee._Employee__hourly_rate == 40
+# assert employee._Employee__position == 'manager'
+# assert employee.get_position() == 'manager'
+# assert employee.get_salary() == 800
+# assert employee._Employee__calculate_salary() == 800
+# assert employee.get_employee_details() == 'Name: Джеки Чан, Position: manager, Salary: 800'
+# employee._set_position('Director')
+# assert employee.get_employee_details() == 'Name: Джеки Чан, Position: Director, Salary: 800'
+#
+# employee_2 = Employee("Пирс Броснан", 'actor', 35, 30)
+# assert employee_2._Employee__calculate_salary() == 1050
+# assert employee_2.get_employee_details() == 'Name: Пирс Броснан, Position: actor, Salary: 1050'
+#
+# print('Good')
 
 
 
