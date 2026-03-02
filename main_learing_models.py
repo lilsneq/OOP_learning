@@ -2,7 +2,6 @@
 
 
 
-
 #начало учебного проекта по ООП
 
 
@@ -575,12 +574,794 @@
 
                                                     #3.2 Инициализация экземпляра. Метод __init__
 
+# class Cat:
+#     def __init__(self, name=None, breed='pers', age=1, color='white'):
+#         print(f'hello new object: ссылка на новый объект -> {self}, -> параметры {name}, {breed, age, color}')
+#         self.name = name
+#         self.breed = breed
+#         self.age = age
+#         self.color = color
+#
+#
+#
+# Cat('Tom', 'siam', 12, 'black')
+# Cat('Walt')
+# Kally = Cat('Kally', age=10)
+                                                    #
+
+# class Name:
+#     def __init__(self, name):
+#         print(f'{name}')
+#         self.name = name
+#         self.breed = 'pers'
+#         self.age = 1
+#         self.color = 'white'
+#
+# Name('lol', "d")            #упадёт ошибка так как нет такого параметра
+
+                                                    #
+
+# class Calculate:
+#     def __init__(self, w, l):
+#         self.w = w
+#         self.l = l
+#         self.per = (self.w * self.l) * 2
+#
+#
+# rect = Calculate(10, 10)
+# print(rect.per)
+
+                                                    #
+
+# class Vehicle:
+#     def __init__(self, max_speed, mileage):
+#         self.max_speed = max_speed
+#         self.mileage = mileage
+#
+#
+# bmw = Vehicle(240, 18)
+# audi = Vehicle(123, 43)
+# print(bmw.__dict__)
+# print(audi.__dict__)
+# model_x = Vehicle(200, 18000)
+# print(model_x.max_speed)
+# print(model_x.mileage)
+
+                                                    #
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def greet(self):
+#         return f"Hello, my name is {self.name}, and I am {self.age} years old"
+#
+#
+# # Ниже расположен код для проверок, его не нужно удалять
+# bro = Person('Nikolay', 34)
+# assert bro.age == 34
+# assert bro.name == 'Nikolay'
+# assert bro.greet() == 'Hello, my name is Nikolay, and I am 34 years old'
+#
+# sister = Person('Elena', 21)
+# assert sister.age == 21
+# assert sister.name == 'Elena'
+# assert sister.greet() == 'Hello, my name is Elena, and I am 21 years old'
+# print('Good')
+
+                                                    #
+
+# class Laptop:
+#     def __init__(self, brand=None, model=None, price=None):
+#         self.brand = brand
+#         self.model = model
+#         self.price = price
+#         self.laptop_name = f'{self.brand} {self.model}'
+#
+#     def laptop1(self, price, a, d):
+#         pass
+#
+#     def laptop2(self, price, a, d):
+#         pass
+#
+#
+# laptop1 = Laptop()
+# laptop2 = Laptop()
+#
+#
+# assert isinstance(laptop1, Laptop)
+# assert isinstance(laptop2, Laptop)
+#
+# hp = Laptop('hp', '15-bw0xx', 57000)
+# assert hp.laptop_name == 'hp 15-bw0xx'
+# assert hp.price == 57000
+# assert isinstance(hp, Laptop)
+#
+#
+# lenovo = Laptop('lenovo', 'z-570-dx', 61000)
+# assert lenovo.brand == 'lenovo'
+# assert lenovo.model == 'z-570-dx'
+# assert lenovo.price == 61000
+# assert lenovo.laptop_name == 'lenovo z-570-dx'
+# assert isinstance(lenovo, Laptop)
+# print('Good')
+
+                                                    #
+
+# class Article:
+#     def __init__(self, title, author):
+#         self.title = title
+#         self.author = author
+##         return None                                       #НЕЛЬЗЯ ВОЗВРАЩАТЬ В МЕТОДЕ __init__ что-то кроме None он сам возвращает None
+#
+# article = Article('Как надуть грелку', "Пяточок")
+# print(article.__dict__)
+
+                                                    #
+
+# class SoccerPlayer:
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#         self.goals = 0
+#         self.assists = 0
+#
+#     def score(self, count_goals=1):
+#         self.goals = self.goals + count_goals
+#
+#     def make_assist(self, count_assists=1):
+#         self.assists = self.assists + count_assists
+#
+#     def statistics(self):
+#         print(f'{self.surname} {self.name} - голы: {self.goals}, передачи: {self.assists}')
+#
+#
+# leo = SoccerPlayer('Leo', 'Messi')
+# assert isinstance(leo, SoccerPlayer)
+# assert leo.__dict__ == {'name': 'Leo', 'surname': 'Messi', 'goals': 0, 'assists': 0}
+# leo.score(700)
+# assert leo.goals == 700
+# leo.make_assist(500)
+# assert leo.assists == 500
+#
+# leo.statistics()
+#
+# kokorin = SoccerPlayer('Alex', 'Kokorin')
+# assert isinstance(kokorin, SoccerPlayer)
+# assert kokorin.name == 'Alex'
+# assert kokorin.surname == 'Kokorin'
+# assert kokorin.assists == 0
+# assert kokorin.goals == 0
+# kokorin.score()
+# assert kokorin.goals == 1
+# kokorin.score(5)
+# assert kokorin.goals == 6
+# kokorin.make_assist()
+# assert kokorin.assists == 1
+# kokorin.make_assist(10)
+# assert kokorin.assists == 11
+#
+# kokorin.statistics()
+#
+#
+# obi = SoccerPlayer('Оби-Ван', 'Кеноби')
+# obi.make_assist()
+# assert obi.name == 'Оби-Ван'
+# assert obi.surname == 'Кеноби'
+# assert obi.__dict__ == {'name': 'Оби-Ван', 'surname': 'Кеноби', 'goals': 0, 'assists': 1}
+# obi.statistics()
+#
+# mila = SoccerPlayer('Mila', 'Kunis')
+# mila.make_assist()
+# mila.statistics()
+
+                                                    #
+
+# class Zebra:
+#     count = 0
+#     def which_stripe(self):
+#         if self.count == 0:
+#             self.count += 1
+#             print('Полоска белая')
+#         else:
+#             self.count -= 1
+#             print('Полоска черная')
+#
+#     def run_away(self):
+#         print('Oh, Sugar Honey Ice Tea')
+#
+#
+# zebra = Zebra()
+# zebra.run_away()
+# zebra.which_stripe()
+# zebra.which_stripe()
+# zebra.which_stripe()
+# zebra.which_stripe()
+# zebra.which_stripe()
+# zebra.run_away()
+
+                                                    #
+
+# class Person:
+#     def __init__(self, first_name, last_name, age):
+#         self.first_name = first_name
+#         self.last_name = last_name
+#         self.age = age
+#
+#     def full_name(self):
+#         return f"{self.last_name} {self.first_name}"
+#
+#     def is_adult(self):
+#         return self.age >= 18
+#
+#
+# p1 = Person('Ash', 'Ketchum', 20)
+# assert isinstance(p1, Person)
+# assert p1.full_name() == 'Ketchum Ash'
+# assert p1.age == 20
+# assert p1.first_name == 'Ash'
+# assert p1.last_name == 'Ketchum'
+# assert p1.is_adult() is True
+#
+# p2 = Person('Hermione', 'Granger', 16)
+# assert isinstance(p2, Person)
+# assert p2.age == 16
+# assert p2.first_name == 'Hermione'
+# assert p2.last_name == 'Granger'
+# assert p2.full_name() == 'Granger Hermione'
+# assert p2.is_adult() is False
+# print('Good')
+
+
+                                                    #3.3 Практика "Создание класса и его методов"
+
+# class Point:
+#
+#     list_points = []
+#
+#     def __init__(self, coord_x=0, coord_y=0):
+#         self.move_to(coord_x, coord_y)
+#         Point.list_points.append(self)
+#
+#     def move_to(self, new_x, new_y):
+#         self.x = new_x
+#         self.y = new_y
+#
+#     def star_coord(self):
+#         self.move_to(0,0 )
+#
+#     def get_coord(self):
+#         print(f'X = {self.x}, Y = {self.y}')
+#
+#     def calc_distance(self, another_point):
+#         if not isinstance(another_point, Point):
+#             raise ValueError(f"Аргумент должен принадлежать классу {Point}")
+#
+#         print(((self.x - another_point.x) ** 2 + (self.y - another_point.y) ** 2) ** 0.5)
+#
+#
+# p1 = Point(3, 4)
+# p1.star_coord()
+# p1.get_coord()
+#
+# p2 = Point(-54, 32)
+# p2.get_coord()
+#
+# p3 = Point(54, -32)
+# p3.move_to(4,5)
+# p3.get_coord()
+#
+# p4 = Point(4)
+# p4.move_to(2323,32)
+# p4.get_coord()
+#
+# p5 = Point(6,0)
+# p6 = Point(0,8)
+# p5.calc_distance(p6)
+# Point.calc_distance(p5,p6)
+#
+#
+# p10 = Point()
+# p11 = Point(4,5)
+#
+# #можно смотреть списки в классе чрез сам класс Point.список
+# print(f'Point[0].y = {Point.list_points[0].y}')
+# print(f'Point[2].x = {Point.list_points[2].x}')
+# print(f'Point[4].x = {Point.list_points[4].x}')
+
+                                                    #
+
+# class Dog:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def description(self):
+#         return f'{self.name} is {self.age} years old'
+#
+#     def speak(self, sound):
+#         return f'{self.name} says {sound}'
+#
+#
+# curt = Dog("Curt", 4)
+# assert isinstance(curt, Dog)
+# assert curt.name == 'Curt'
+# assert curt.age == 4
+# assert curt.description() == 'Curt is 4 years old'
+# assert curt.speak("Wo") == 'Curt says Wo'
+# assert curt.speak("Bow") == 'Curt says Bow'
+#
+# jack = Dog("Jack", 12)
+# assert isinstance(curt, Dog)
+# assert jack.name == 'Jack'
+# assert jack.age == 12
+# assert jack.description() == 'Jack is 12 years old'
+# assert jack.speak("Woof Woof") == 'Jack says Woof Woof'
+# assert jack.speak("Bow Wow") == 'Jack says Bow Wow'
+#
+# assert Dog('Karl', 6).description() == 'Karl is 6 years old'
+# print('Good')
+
+                                                    #
+
+# class Rectangle:
+#     def __init__(self, width, height):
+#         self.width = width
+#         self.height = height
+#
+#     def area(self):
+#         return self.width * self.height
+#
+#     def perimeter(self):
+#         return 2 * (self.width + self.height)
+#
+#
+# r1 = Rectangle(2, 3)
+# assert r1.width == 2
+# assert r1.height == 3
+# assert r1.perimeter() == 10
+# assert r1.area() == 6
+#
+# r2 = Rectangle(10, 0.5)
+# assert r2.width == 10
+# assert r2.height == 0.5
+# assert r2.perimeter() == 21.0
+# assert r2.area() == 5.0
+# print('Good')
+
+                                                    #
+
+# class Numbers:
+#     def __init__(self, *args):
+#         self.numbers = list(args)
+#
+#     def add_number(self, number):
+#         self.numbers.append(number)
+#
+#     def get_positive(self):
+#         result = []
+#         for i in self.numbers:
+#             if i > 0:
+#                 result.append(i)
+#         return result
+#
+#     def get_negative(self):
+#         result = []
+#         for i in self.numbers:
+#             if i < 0:
+#                 result.append(i)
+#         return result
+#
+#     def get_zeroes(self):
+#         result = []
+#         for i in self.numbers:
+#             if i == 0:
+#                 result.append(i)
+#         return result
+#
+#
+# nums = Numbers(10, 20, 30, 0, 0, 5)
+#
+# print(nums.get_positive())
+# print(nums.get_zeroes())
+# nums.add_number(100)
+# nums.add_number(0)
+# nums.add_number(7)
+# print(nums.get_positive())
+# print(nums.get_zeroes())
+
+                                                    #
+
+# class Stack:
+#     def __init__(self):
+#         self.values = list()
+#
+#     def push(self, item):
+#         self.values.append(item)
+#
+#     def pop(self):
+#         if len(self.values) > 0:
+#             return self.values.pop(-1)
+#         print('Empty Stack')
+#         return None
+#
+#     def peek(self):
+#         if self.values:
+#             return self.values[-1]
+#         print('Empty Stack')
+#         return None
+#
+#     def is_empty(self):
+#         return len(self.values) == 0
+#
+#     def size(self):
+#         return len(self.values)
+#
+#
+# # Ниже код для проверки класса Stack
+#
+# s = Stack()
+# assert s.values == []
+# assert isinstance(s, Stack)
+#
+# s.peek()  # распечатает 'Empty Stack'
+# assert s.is_empty() is True
+# s.push('cat')
+# assert s.size() == 1
+# assert s.peek() == 'cat'
+#
+# s.push('dog')
+# assert s.size() == 2
+# assert s.peek() == 'dog'
+#
+# s.push(True)
+# assert s.size() == 3
+# assert s.is_empty() is False
+#
+# s.push(777)
+# assert s.size() == 4
+#
+# assert s.pop() == 777
+# assert s.size() == 3
+#
+# assert s.pop() is True
+# assert s.size() == 2
+#
+# s.push(123)
+# s.push(123456)
+# assert s.peek() == 123456
+# assert s.size() == 4
+#
+# assert s.pop() == 123456
+# assert s.pop() == 123
+# assert s.pop() == 'dog'
+# assert s.is_empty() is False
+# assert s.pop() == 'cat'
+# assert s.is_empty() is True
+#
+#
+# d = Stack()
+# assert d.peek() is None  # Печатает "Empty Stack"
+# assert d.pop() is None  # Печатает "Empty Stack"
+# d.push('hello')
+# assert d.size() == 1
+# d.push('world')
+# assert d.size() == 2
+# assert d.peek() == 'world'
+# assert d.pop() == 'world'
+# assert d.peek() == 'hello'
+
+                                                    #
+
+# class Worker:
+#     def __init__(self, name, salary, gender, passport):
+#         self.name = name
+#         self.salary = salary
+#         self.gender = gender
+#         self.passport = passport
+#
+#     def get_info(self):
+#         return f'Worker {self.name}; passport-{self.passport}'
+#
+#
+# persons= [
+#     ('Allison Hill', 334053, 'M', '1635644202'),
+#     ('Megan Mcclain', 191161, 'F', '2101101595'),
+#     ('Brandon Hall', 731262, 'M', '6054749119'),
+#     ('Michelle Miles', 539898, 'M', '1355368461'),
+#     ('Donald Booth', 895667, 'M', '7736670978'),
+#     ('Gina Moore', 900581, 'F', '7018476624'),
+#     ('James Howard', 460663, 'F', '5461900982'),
+#     ('Monica Herrera', 496922, 'M', '2955495768'),
+#     ('Sandra Montgomery', 479201, 'M', '5111859731'),
+#     ('Amber Perez', 403445, 'M', '0602870126')
+# ]
+#
+# worker_objects = []
+#
+# for i in persons:
+#     w = Worker(i[0], i[1], i[2], i[3])
+#     worker_objects.append(w)
+#     w.get_info()
+#
+# for worker in worker_objects:
+#     print(worker.get_info())
+#
+#
+# worker_objects = [Worker(*i) for i in persons]
+#
+# for worker in worker_objects:
+#     print(worker.get_info())
+#
+#
+# worker_objects = []
+#
+# for i in persons:
+#     worker_objects.append(Worker(i[0], i[1], i[2], i[3]))
+#     if len(worker_objects)  == len(persons):
+#         for j in worker_objects:
+#             print(j.get_info())
+
+                                                    #
+
+# Напишите определение класса CustomLabel
+# class CustomLabel:
+#     def __init__(self, text, **kwargs):
+#         self.text = text
+#         self.config(**kwargs)
+#
+#     def config(self, **kwargs):
+#         for key, value in kwargs.items():
+#             setattr(self, key, value)
+#
+#
+#
+#
+#
+# # Ниже код для проверки методов класса CustomLabel
+# label1 = CustomLabel(text="Hello Python", fg="#eee", bg="#333")
+# label2 = CustomLabel(text="Username")
+# label3 = CustomLabel(text="Password", font=("Comic Sans MS", 24, "bold"), bd=20, bg='#ffaaaa')
+# label4 = CustomLabel(text="Hello", bd=20, bg='#ffaaaa')
+# label5 = CustomLabel(text="qwwerty", a=20, b='#ffaaaa', r=[3, 4, 5, 6], p=32)
+#
+# assert label1.__dict__ == {'text': 'Hello Python', 'fg': '#eee', 'bg': '#333'}
+# assert label2.__dict__ == {'text': 'Username'}
+# assert label3.__dict__ == {'text': 'Password', 'font': ('Comic Sans MS', 24, 'bold'), 'bd': 20, 'bg': '#ffaaaa'}
+# assert label4.__dict__ == {'text': 'Hello', 'bd': 20, 'bg': '#ffaaaa'}
+# assert label5.__dict__ == {'text': 'qwwerty', 'a': 20, 'b': '#ffaaaa', 'r': [3, 4, 5, 6], 'p': 32}
+#
+# print(label1.__dict__)
+# print(label2.__dict__)
+# print(label3.__dict__)
+# print(label4.__dict__)
+# print(label5.__dict__)
+#
+# label4.config(color='red', bd=100)
+# label5.config(color='red', bd=100, a=32, b=432, p=100, z=432)
+#
+# assert label4.__dict__ == {'text': 'Hello', 'bd': 100, 'bg': '#ffaaaa', 'color': 'red'}
+# assert label5.__dict__ == {'text': 'qwwerty', 'a': 32, 'b': 432, 'r': [3, 4, 5, 6], 'p': 100,
+#                            'color': 'red', 'bd': 100, 'z': 432}
+
+                                                        #
+
+#
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def display_person_info(self):
+#         print(f'Person: {self.name}, {self.age}')
+#
+#
+# class Company:
+#     def __init__(self, company_name, location):
+#         self.company_name = company_name
+#         self.location = location
+#
+#     def display_company_info(self):
+#         print(f'Company: {self.company_name}, {self.location}')
+#
+#
+# class Employee:
+#     def __init__(self, name, age, company_name, location):
+#         self.personal_data = Person(name, age)
+#         self.work = Company(company_name, location)
+#
+#
+# ivan = Person('Ivan', 32)
+# assert ivan.name == 'Ivan'
+# assert ivan.age == 32
+# ivan.display_person_info()
+#
+# zara = Company('Zara', 'Prague')
+# assert zara.company_name == 'Zara'
+# assert zara.location == 'Prague'
+# zara.display_company_info()
+#
+#
+# emp = Employee('Jessica', 28, 'Google', 'Atlanta')
+# assert isinstance(emp.personal_data, Person)
+# assert isinstance(emp.work, Company)
+#
+# assert emp.personal_data.name == 'Jessica'
+# assert emp.personal_data.age == 28
+# emp.personal_data.display_person_info()
+#
+# assert emp.work.company_name == 'Google'
+# assert emp.work.location == 'Atlanta'
+# emp.work.display_company_info()
+#
+# emp2 = Employee('Kolya', 11, 'Facebook', 'Seattle')
+# assert isinstance(emp2.personal_data, Person)
+# assert isinstance(emp2.work, Company)
+#
+# assert emp2.personal_data.name == 'Kolya'
+# assert emp2.personal_data.age == 11
+# emp2.personal_data.display_person_info()
+#
+# assert emp2.work.company_name == 'Facebook'
+# assert emp2.work.location == 'Seattle'
+# emp2.work.display_company_info()
+
+                                                    #
+
+# class Task:
+#     def __init__(self, name, description, status=False):
+#         self.name = name
+#         self.description = description
+#         self.status = status
+#
+#     def display(self):
+#         return print(f'{self.name} ({("Сделана" if self.status else "Не сделана")})')
+#
+#
+# class TaskList:
+#     def __init__(self):
+#         self.tasks = []
+#
+#     def add_task(self, task):
+#         self.tasks.append(task)
+#
+#     def remove_task(self, task):
+#         self.tasks.remove(task)
+#
+#
+# class TaskManager:
+#     def __init__(self, tasklist):
+#         self.task_list = tasklist
+#
+#     def mark_done(self, status_instance):
+#         status_instance.status = True
+#
+#     def mark_undone(self, status_instance):
+#         status_instance.status = False
+#
+#     def show_tasks(self):
+#         for task in self.task_list.tasks:
+#             Task.display(task)
+#
+#
+# # Создаем список задач
+# todo = TaskList()
+# assert todo.tasks == []
+#
+# # Создаем несколько задач и добавляем их в список
+# task1 = Task("Стирка", "Постирать трусы, носки, слюнявчики")
+# assert task1.name == 'Стирка'
+# assert task1.description == 'Постирать трусы, носки, слюнявчики'
+# assert task1.status is False
+# task1.display()
+#
+# todo.add_task(task1)
+# assert len(todo.tasks) == 1
+#
+# task2 = Task("Продукты", "Купить лук чеснок огурцы хлеб и биток")
+# assert task2.name == 'Продукты'
+# assert task2.description == 'Купить лук чеснок огурцы хлеб и биток'
+# assert task2.status is False
+#
+# todo.add_task(task2)
+# assert len(todo.tasks) == 2
+#
+# # Создаем менеджер задач и показываем список задач
+# manager = TaskManager(todo)
+# assert isinstance(manager.task_list, TaskList)
+# print('-----Список дел-----')
+# manager.show_tasks()
+#
+# # Отмечаем первую задачу выполненной и показываем список задач
+# manager.mark_done(task1)
+#
+# # Проверяем изменился ли статус 2мя способами
+# assert task1.status is True
+# assert manager.task_list.tasks[0].status is True
+#
+# print('-----Список дел-----')
+# manager.show_tasks()
+#
+# # Удаляем вторую задачу и показываем список задач
+# todo.remove_task(task2)
+#
+# assert len(todo.tasks) == 1
+# assert len(manager.task_list.tasks) == 1
+#
+# print('-----Список дел-----')
+# manager.show_tasks()
+
+
+                                                    #
+
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def is_exists(self):
+#         return (self.a + self.b > self.c and
+#                 self.a + self.c > self.b and
+#                 self.b + self.a > self.a)
+#
+#     def is_equilateral(self):
+#         return self.a == self.b == self.c
+#
+#     def is_isosceles(self):
+#         if self.a + self.b > self.c and self.a + self.c > self.b and self.c + self.b > self.a:
+#             return self.a == self.b or self.b == self.c or self.c == self.a
+#         return False
+
+# triangle = Triangle(3, 4, 5)
+# print(f"Is Triangle exist: {triangle.is_exists()}")
+# print(f"Is Equilateral: {triangle.is_equilateral()}")
+# print(f"Is Isosceles: {triangle.is_isosceles()}")
+
+                                                    #
+
+class Point:
+    dictory = list()
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        Point.dictory.append(self)
+
+    def get_distance_to_origin(self):
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+
+    def get_point_with_max_distance(self):
+        # lists = sorted(Point.dictory.keys() ,key=lambda p: p.get_distance_to_origin())                    #вывод наибольшего из всех
+        # lists[-1].display()
+
+        result = max(Point.dictory, key=lambda x: (x.get_distance_to_origin(), x.y))
+
+        result.display()
+
+
+
+    def get_distance(self, another_point):
+        if not isinstance(another_point, Point):
+            print('Передана не точка')
+            return None
+        return ((self.x - another_point.x) ** 2
+                + (self.y - another_point.y) ** 2) ** 0.5
+
+    def display(self):
+        print(f"Point({self.x}, {self.y})")
 
 
 
 
 
 
+p1 = Point(6, 8)
+p2 = Point(8, 6)
+p2.get_point_with_max_distance()
+
+# Point.get_point_with_max_distance(p1)
 
 
 
