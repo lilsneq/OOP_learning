@@ -1,5 +1,8 @@
 #импорты
-from tkinter.font import names
+# from typing import List, Tuple
+
+
+
 
 
 #начало учебного проекта по ООП
@@ -1526,28 +1529,28 @@ from tkinter.font import names
 
 # class Library:
 #
-#     def __init__(self, books):
+#     def __init__(self, books: list[str]) -> None:
 #         self.__books = list(books)
 #
-#     def __check_availability(self, name):
+#     def __check_availability(self, name) -> bool:
 #         """принимает название книги и возращает bool"""
 #
 #         if name in self.__books:
 #             return True
 #         return False
 #
-#     def search_book(self, name):
+#     def search_book(self, name) -> bool:
 #         """ищет книгу в self.set_books при помощи __check_availability"""
 #
 #         if self.__check_availability(name):
 #             return True
 #         return False
 #
-#     def return_book(self, name):
+#     def return_book(self, name) -> None:
 #         """принимает название книги которую нужно вернуть в библиотеку"""
 #         self.__books.append(name)
 #
-#     def _checkout_book(self, name):
+#     def _checkout_book(self, name) -> bool:
 #         """принимает название книги если книга в наличие
 #         уберает из списка и возврщает True"""
 #
@@ -1555,7 +1558,7 @@ from tkinter.font import names
 #             self.__books.remove(name)
 #             return True
 #         return False
-#
+# #
 #
 #
 # # Напишите определение класса Library
@@ -1592,7 +1595,7 @@ from tkinter.font import names
 #         """считает зарплату сотрудника, умножая отработанные часы на часовую оплату"""
 #         return self.__hours_worked * self.__hourly_rate
 #
-#     def _set_position(self, position) -> None:
+#     def _set_position(self, position: str) -> None:
 #         """принимает название должности и изменяет пользователю значение атрибута __position"""
 #         self.__position = position
 #
@@ -1625,6 +1628,244 @@ from tkinter.font import names
 # assert employee_2.get_employee_details() == 'Name: Пирс Броснан, Position: actor, Salary: 1050'
 #
 # print('Good')
+
+
+
+#                                                 #3.6 Геттеры, сеттеры, делитеры, свойства
+#
+# class BankAccount:
+#     def __init__(self, name: str, balance: int) -> None:
+#         self.name = name
+#         self.__balance = balance
+#
+#     def get_balance(self) -> int:
+#         return self.__balance
+#
+#     def set_balance(self, value) -> None:
+#         if not isinstance(value, (int, float)):
+#             raise ValueError('Баланс должен быть числом')
+#         self.__balance = value
+#
+#     def delete_balance(self) -> None:
+#         del self.__balance
+#
+#     balance = property(fget=get_balance, fset=set_balance, fdel=delete_balance)
+#
+#
+#
+# a = BankAccount("Vasya", 100)
+# a.name = 'Ivan'
+#
+# a.balance = 550
+#
+# del a.balance
+#
+# print(a.__dict__)
+
+                                                #
+
+# class BankAccount:
+#     def __init__(self, account_number: int, balance: int):
+#         self._account_number = account_number
+#         self._balance = balance
+#
+#     def get_account_number(self) -> int:
+#         return self._account_number
+#
+#     def get_balance(self) -> int:
+#         return self._balance
+#
+#     def set_balance(self, balance) -> None:
+#         if isinstance(balance, (int, float)):
+#             self._balance = balance
+
+                                                #
+
+# class Employee:
+#     def __init__(self, name: str, salary: int) -> None :
+#         self.__name = name
+#         self.__salary = salary
+#
+#     def __get_name(self) -> str:
+#         """приватный геттер метод для атрибута __name"""
+#         return self.__name
+#
+#     def __get_salary(self) -> int:
+#         """приватный геттер метод для атрибута __salary"""
+#         return self.__salary
+#
+#     def __set_salary(self, value) -> None:
+#         """__salary: он должен позволять сохранять в атрибут __salary только положительные числа"""
+#         if not isinstance(value, (int, float)):
+#             print(f'ErrorValue:{value}')
+#
+#         if isinstance(value, (int, float)):
+#             if value <= 0:
+#                 print(f"ErrorValue:{value}")
+#                 return
+#
+#             self.__salary = value
+#
+#
+#     title = property(fget=__get_name)
+#     reward = property(fget=__get_salary,fset=__set_salary)
+#
+#
+# # Ниже код для проверки методов класса Employee
+# employee = Employee("John Doe", 50000)
+# assert employee.title == "John Doe"
+# assert employee._Employee__name == "John Doe"
+# assert isinstance(employee, Employee)
+# assert isinstance(type(employee).title, property), 'Вы не создали property title'
+# assert isinstance(type(employee).reward, property), 'Вы не создали property reward'
+#
+# assert employee.reward == 50000
+# employee.reward = -100  # ErrorValue:-100
+#
+# employee.reward = 1.5
+# assert employee.reward == 1.5
+#
+# employee.reward = 70000
+# assert employee.reward == 70000
+# employee.reward = 'hello'  # Печатает ErrorValue:hello
+# employee.reward = '777'  # Печатает ErrorValue:777
+# employee.reward = [1, 2]  # Печатает ErrorValue:[1, 2]
+# assert employee.reward == 70000
+# employee._Employee__set_salary(55000)
+# assert employee._Employee__get_salary() == 55000
+
+                                                        #
+
+# class UserMail:
+#     def __init__(self, login: str, email: str):
+#         self.login = login
+#         self.email = email
+#
+#     def get_email(self) -> str:
+#         return self.__email
+#
+#     def set_email(self, new_email) -> None:
+#         if isinstance(new_email, str):
+#             if (new_email.count('@')) == 1 and '.' in new_email.split('@')[1] and new_email.count('.') == 1:
+#                 self.__email = new_email
+#
+#             else:
+#                 print(f'ErrorMail:{new_email}')
+#         else:
+#             print(f'ErrorMail:{new_email}')
+#
+#     email = property(get_email, set_email)
+#
+#
+# jim = UserMail("aka47", 'hello@com.org')
+# print(jim.login)
+# print(jim._UserMail__email)
+# print(isinstance(type(jim).email, property))
+# print(jim.email)
+# try:
+#     jim.email = [1, 2, 3]
+# except ValueError as e:
+#     print(e)
+# try:
+#     jim.email = 'hello@@re.ee'
+# except ValueError as e:
+#     print(e)
+# jim.email = 'hello@re.w3'
+# print(jim.email)
+
+                                                #
+
+# class UserMail:
+#     storage_user_mail = {}
+#
+#     def __init__(self, login: str, email: str) -> None:
+#         self.login = login
+#         self.email = email
+#
+#     def get_email(self) -> str:
+#         return self.__email
+#
+#     def set_email(self, new_email) -> None:
+#         if not isinstance(new_email, str):
+#             raise TypeError(f"ErrorMail: {new_email} не является строкой")
+#         if (new_email.count('@')) == 1 and '.' in new_email.split('@')[1] and new_email.count('.') == 1:
+#             self.__email = new_email
+#             UserMail.storage_user_mail[self.login] = new_email
+#
+#         else:
+#             raise ValueError(f'ErrorMail:{new_email}')
+#
+#     def get_login(self) -> str:
+#         return self.__login
+#
+#     def set_login(self, new_login) -> None:
+#         if not isinstance(new_login, str):
+#             raise TypeError(f'{new_login} не является строкой')
+#
+#         if new_login in UserMail.storage_user_mail:
+#             if hasattr(self, '_UserMail__login') and self.__login == new_login:
+#                 return
+#             raise ValueError(f'Логин {new_login} уже имеется в системе')
+#
+#         if hasattr(self, '_UserMail__login'):
+#             UserMail.storage_user_mail.pop(self.__login)
+#
+#         self.__login = new_login
+#         UserMail.storage_user_mail[new_login] = getattr(self, 'email', None)
+#
+#
+#     email = property(get_email, set_email)
+#     login = property(get_login, set_login)
+#
+#
+#
+# jim = UserMail("aka47", 'hello@com.org')
+# print(isinstance(type(jim).login, property)) # Проверка на наличие свойства login
+# print(f'Jim login is {jim.login}')
+# try:
+#     bim = UserMail("aka47", 'world@com.org') # Попытка создать экземпляр с занятым логином
+# except ValueError as e:
+#     print(e)
+# jim.login = 'aka48'
+# print(f'Jim login is {jim.login}')
+# bim = UserMail("aka47", 'world@com.org')
+# print(f'Bim login is {bim.login}')
+#
+# for value in [True, [1, 2, 3], 5, {'a': 'b'}]:
+#     try:
+#         UserMail(value, 'world@com.org')
+#     except TypeError as e:
+#         print(e)
+#
+# users = [
+#     UserMail("person", 'hello@com.org'),
+#     UserMail("person1", 'hello1@com.org'),
+#     UserMail("person2", 'hello2@com.org'),
+# ]
+#
+# try:
+#     UserMail("person1", 'hello3@com.org')
+# except ValueError as e:
+#     print(e)
+#
+# try:
+#     UserMail("person2", 'hello4@com.org')
+# except ValueError as e:
+#     print(e)
+#
+# r = UserMail("person3", 'hello5@com.org')
+# print(r.login)
+#
+# print(UserMail.storage_user_mail)
+
+
+
+
+
+
+
+
+
 
 
 
