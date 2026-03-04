@@ -1,8 +1,6 @@
 #импорты
 # from typing import List, Tuple
-
-
-
+from itertools import count
 
 
 #начало учебного проекта по ООП
@@ -1857,6 +1855,354 @@
 # print(r.login)
 #
 # print(UserMail.storage_user_mail)
+
+
+                                                #3.7 Декоратор Property
+
+# class BankAccount:
+#     def __init__(self, name, balance):
+#         self.name = name
+#         self.__balance = balance
+#
+#     @property
+#     def my_balance(self):
+#         print('get_balance')
+#         return self.__balance
+#
+#     @my_balance.setter
+#     def my_balance(self, value):
+#         print('set_balance')
+#         if not isinstance(value, (int, float)):
+#             raise ValueError('Баланс должен быть числом')
+#         self.__balance = value
+#
+#     @my_balance.deleter
+#     def my_balance(self):
+#         print('delete_balance')
+#         del self.__balance
+#
+#     # my_balance = property(my_balance)                     #декоратор getter
+#     # my_balance = my_property_balance.setter(my_balance)   #декоратор setter
+#     # my_balance = my_balance.deleter(delete_balance)       #декоратор deliter
+#
+#
+#
+# a = BankAccount('Ivan', 100)
+# a.my_balance = 34343
+# x = a.my_balance = 100
+#
+# a._BankAccount__balance = 232399
+#
+#
+# print(a.my_balance)
+# print(a.__dict__)
+
+                                                #
+
+# class MagicalBox:
+#     def __init__(self, contents=None):
+#         self._contents = contents
+#
+#     @property
+#     def contents(self):
+#         if self._contents == "rabbit":
+#             return "🐇 A magical rabbit!"
+#         else:
+#             return self._contents
+#
+#     @contents.setter
+#     def entity(self, new_contents): # вот тут поменялось название
+#         if new_contents == "wishes":
+#             print("🌟 Your wishes are granted!")
+#             self._contents = new_contents
+#         else:
+#             print("✨ The magic didn't work this time.")
+#             self._contents = new_contents
+#
+#
+# box = MagicalBox("rubies")
+#
+# box.contents = "32"
+# print(box.contents)
+
+                                                #
+
+# class Celsius:
+#     def __init__(self, celsius: int) -> None:
+#         self._celsius = celsius
+#
+#     def to_fahrenheit(self) -> float:
+#         return (self._celsius * 9 / 5) + 32
+#
+#     @property
+#     def temperature(self) -> float:
+#         return self._celsius
+#
+#     @temperature.setter
+#     def temperature(self, new_value: int) -> None:
+#         if new_value < -273.15:
+#             raise ValueError('Temperature must be greater than or equal to 273.15')
+#         self._celsius = new_value
+#
+#
+#
+#
+# celsius = Celsius(25)
+# assert celsius.temperature == 25
+# assert celsius.to_fahrenheit() == 77.0
+#
+# celsius.temperature = 30
+# assert celsius.temperature == 30
+# assert celsius.to_fahrenheit() == 86.0
+#
+# print('Good')
+
+                                                    #
+
+# class File:
+#     def __init__(self, size_in_bytes) -> None:
+#         self._size_in_bytes = size_in_bytes
+#
+#     @property
+#     def size(self) -> str:
+#         b = self._size_in_bytes
+#         if b < 1024:
+#             return f'{b} B'
+#         if b < 1024**2:
+#             return f'{b / 1024:.2f} KB'
+#         if b < 1024**3:
+#             return f'{b / 1024**2:.2f} MB'
+#         if b < 1024**4:
+#             return f'{b / 1024**3:.2f} GB'
+#
+#     @size.setter
+#     def size(self, new_value) -> None:
+#         self._size_in_bytes = new_value
+#
+#
+# file = File(5)
+# assert file.size == "5 B"
+# file.size = 1023
+# assert file.size == "1023 B"
+# file.size = 1024
+# assert file.size == "1.00 KB"
+#
+# file_1 = File(1500000)
+# assert file_1._size_in_bytes == 1500000
+# assert file_1.size == "1.43 MB"
+#
+# file_2 = File(1500)
+# assert file_2.size == "1.46 KB"
+#
+#
+# file_3 = File(2789326322)
+# assert file_3.size == "2.60 GB"
+# file_3.size = 1073741824
+# assert file_3.size == "1.00 GB"
+#
+# print('Good')
+
+                                                    #
+
+# class Notebook:
+#     def __init__(self, notes: list[str]) -> None:
+#         self._notes = notes
+#
+#     @property
+#     def notes_list(self) -> None:
+#         for index, unit in enumerate(self._notes, 1):
+#             print(f'{index}.{unit}')
+#
+#
+#
+# #првоерки
+# note = Notebook(['Buy Potato', 'Buy Carrot', 'Wash car'])
+# note.notes_list
+#
+# note = Notebook(list(range(10, 20)))
+# note.notes_list
+# try:
+#     note.notes_list = [3, 4, 3] # при попытке сохранить новое значение должна быть ошибка
+# except AttributeError:
+#     pass
+
+                                                    #
+
+# class Money:
+#     def __init__(self, dollar: int, cents: int) -> None:
+#         self.total_cents = (dollar * 100) + cents
+#
+#     @property
+#     def dollars(self) -> int:
+#         """возвращает количество имеющихся долларов"""
+#         return self.total_cents // 100
+#
+#     @dollars.setter
+#     def dollars(self, new_dollar) -> None:
+#         """устанавливает при помощи него новое значение в атрибут экземпляра total_cents"""
+#         if isinstance(new_dollar, int) and new_dollar >= 0:
+#             self.total_cents = (new_dollar * 100) + (self.total_cents % 100)
+#         else:
+#             print('Error dollars')
+#
+#     @property
+#     def cents(self) -> int:
+#         """возвращает количество имеющихся центов"""
+#         return self.total_cents % 100
+#
+#     @cents.setter
+#     def cents(self, new_cents) -> None:
+#         if isinstance(new_cents, int) and 0 <= new_cents < 100:
+#             self.total_cents = (self.dollars * 100) + new_cents
+#         else:
+#             print('Error cents')
+#
+#     def __str__(self) -> str:
+#         return f'Ваше состояние составляет {self.dollars} долларов {self.cents} центов'
+#
+#
+# bill = Money(101, 99)
+# assert isinstance(bill, Money)
+#
+# print(bill)  # Ваше состояние составляет 101 долларов 99 центов
+# print(bill.dollars, bill.cents)  # 101 99
+# bill.dollars = 666
+# print(bill)  # Ваше состояние составляет 666 долларов 99 центов
+# bill.cents = 12
+# print(bill)  # Ваше состояние составляет 666 долларов 12 центов
+# assert bill.total_cents == 66612
+# assert list(bill.__dict__.keys()) == ['total_cents']
+#
+# ken = Money(111, 90)
+# assert isinstance(ken, Money)
+# print(ken)
+# ken.dollars = 'hello'  # Error dollars
+# ken.dollars = 0
+# print(ken)
+# ken.cents = [1, 2, 3]  # Error cents
+# ken.cents = 100  # Error cents
+# ken.cents = 99
+# print(ken)
+
+                                                    #
+
+# class TimeZone:
+#     def __init__(self, name: str, offset_hours: int, offset_minutes: int) -> None:
+#         self.name = name
+#         self.offset_hours = offset_hours
+#         self.offset_minutes = offset_minutes
+#
+#     @property
+#     def name(self) -> str:
+#         return self._name
+#
+#     @name.setter
+#     def name(self, value: str) -> None:
+#         """Отбросить все незначимые проблемы .strip()
+#          Если входное имя часового пояса не удовлетворяет этим требованиям, выкидывайте исключение"""
+#         if not isinstance(value, str) or not value.strip():
+#                 raise ValueError(f'Timezone bad name - {value}')
+#
+#         self._name = value.strip()
+#
+#     @property
+#     def offset_hours(self) -> int:
+#         return self._offset_hours
+#
+#     @offset_hours.setter
+#     def offset_hours(self, number: int) -> None:
+#         """должно позволять сохранять смещение по часам -
+#         допускаются только целые числа от -12 до 14 включительно,
+#         Если входное смещение по часам не удовлетворяет этим требованиям, выкидывайте исключение"""
+#         if not isinstance(number, int):
+#             raise ValueError(f'Hour offset must be an integer.')
+#         if not -12 <= number <= 14:
+#             raise ValueError('Offset must be between -12:00 and +14:00.')
+#
+#         self._offset_hours = number
+#
+#     @property
+#     def offset_minutes(self) -> int:
+#         return self._offset_minutes
+#
+#     @offset_minutes.setter
+#     def offset_minutes(self, number: int) -> None:
+#         """должно позволять сохранять смещение по минутам -
+#         допускаются только целые числа от -59 до 59 включительно
+#         . Если входное смещение по минутам не удовлетворяет этим требованиям, выкидывайте исключение"""
+#         if not isinstance(number, int):
+#             raise ValueError('Minutes offset must be an integer.')
+#         if not -59 <= number <= 59:
+#             raise ValueError('Minutes offset must between -59 and 59.')
+#
+#         self._offset_minutes = number
+#
+#
+#
+# tz1 = TimeZone('ABC', -2, -15)
+# print(tz1.name)
+# print(tz1.offset_hours)
+# print(tz1.offset_minutes)
+#
+# tz1.name = 'XYZ'
+# tz1.offset_hours = 12
+# tz1.offset_minutes = 0
+#
+# try:
+#     tz1.offset_hours = 67
+# except ValueError as e:
+#     print(e)
+# print(tz1.name, tz1.offset_hours, tz1.offset_minutes)
+#
+# for name in ['', None, '    ', 123, (1, 3), True]:
+#     try:
+#         TimeZone(name, 5, 34)
+#     except ValueError as e:
+#         print(e)
+#
+# try:
+#     TimeZone(' Abc ', -20.5, 34)
+# except ValueError as e:
+#     print(e)
+#
+# try:
+#     TimeZone(' Abc ', -15, 34)
+# except ValueError as e:
+#     print(e)
+#
+# try:
+#     TimeZone(' Abc ', 15, 34)
+# except ValueError as e:
+#     print(e)
+#
+# tz = TimeZone(' Abc ', 10, 34)
+# print(tz.name)
+# print(tz.offset_hours)
+# print(tz.offset_minutes)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
